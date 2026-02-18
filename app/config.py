@@ -1,0 +1,3 @@
+MODEL_NAME = "gemini-2.5-flash"
+VECTOR_K = 3
+LEAD_QUALIFIED_THRESHOLD = 60
