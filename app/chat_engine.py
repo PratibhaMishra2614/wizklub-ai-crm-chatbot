@@ -3,6 +3,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
 import os
+import streamlit as st
 from google import genai
 from prompts import (
     BASE_SYSTEM_PROMPT,
@@ -19,10 +20,16 @@ from database import (
 from lead_manager import apply_ai_signals
 from ai_extractor import extract_lead_signals
 
+# Load local .env (for local development)
 load_dotenv()
 
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+# ✅ Works both locally and on Streamlit Cloud
+api_key = os.getenv("GEMINI_API_KEY") or st.secrets["GEMINI_API_KEY"]
+
+client = genai.Client(api_key=api_key)
+
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+
 
 # ===============================
 # VECTOR STORE
