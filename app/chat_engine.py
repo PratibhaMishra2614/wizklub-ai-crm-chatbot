@@ -234,7 +234,7 @@ Instructions:
 """
 
     response = client.models.generate_content(
-        model="models/models/gemini-1.5-flash-002",
+        model="gemini-1.5-flash",
         contents=final_prompt
     )
 

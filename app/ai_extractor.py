@@ -107,7 +107,7 @@ Message:
 
     try:
         response = client.models.generate_content(
-            model="models/gemini-1.5-flash-002",
+            model="gemini-1.5-flash",
             contents=prompt
         )
 
