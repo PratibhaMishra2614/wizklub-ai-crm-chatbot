@@ -21,12 +21,17 @@ from lead_manager import apply_ai_signals
 from ai_extractor import extract_lead_signals
 
 # Load local .env (for local development)
+import streamlit as st
 load_dotenv()
 
-# ✅ Works both locally and on Streamlit Cloud
-api_key = os.getenv("GEMINI_API_KEY") or st.secrets["GEMINI_API_KEY"]
+api_key = os.getenv("GEMINI_API_KEY")
+
+# If running on Streamlit Cloud
+if not api_key:
+    api_key = st.secrets.get("GEMINI_API_KEY")
 
 client = genai.Client(api_key=api_key)
+
 
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 

@@ -4,8 +4,16 @@ import os
 import json
 import re
 
+import streamlit as st
 load_dotenv()
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+
+api_key = os.getenv("GEMINI_API_KEY")
+
+# If running on Streamlit Cloud
+if not api_key:
+    api_key = st.secrets.get("GEMINI_API_KEY")
+
+client = genai.Client(api_key=api_key)
 
 # ===============================
 # SAFE JSON PARSER
